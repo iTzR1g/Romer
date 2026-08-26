@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 # Requires: cmake g++ libjpeg-dev libx11-dev libxext-dev libsdl2-dev libsdl2-ttf-dev
+# See README.md for package names on your distro.
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
 BUILD_DIR="${PROJECT_DIR}/build"

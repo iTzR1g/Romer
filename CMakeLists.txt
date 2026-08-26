@@ -77,7 +77,7 @@ elseif(SDL2_FOUND)
     set(UI_LIBS       SDL2::SDL2)
     message(WARNING "SDL2_ttf not found – UI mode disabled. "
                     "CLI modes (--server --send --recv --shell <host>) still work. "
-                    "Install libsdl2-ttf-dev (Linux) or sdl2_ttf (Homebrew/vcpkg).")
+                    "Install SDL2_ttf dev package for your distro (see README).")
 else()
     set(HAS_UI        FALSE)
     set(UI_SOURCE     "")
@@ -85,8 +85,7 @@ else()
     set(UI_LIBS       "")
     message(WARNING "SDL2 not found – viewer and UI disabled. "
                     "CLI modes (--server --send --recv --shell) still work. "
-                    "Install libsdl2-dev + libsdl2-ttf-dev (Linux) or "
-                    "SDL2 + SDL2_ttf via Homebrew/vcpkg.")
+                    "Install SDL2 + SDL2_ttf dev packages for your distro (see README).")
 endif()
 
 # ─── Core sources (always compiled) ────────────────────────

@@ -309,7 +309,17 @@ int RemoteShellServer::handleClient(int fd) {
 #ifdef _WIN32
         shell_path = "cmd.exe";
 #else
-        shell_path = "/bin/bash";
+        // Try common shell locations across distros
+        static const char* shells[] = {
+            "/bin/bash",        // Debian / Ubuntu / Arch / Gentoo
+            "/usr/bin/bash",    // Fedora 33+ / NixOS / Void
+            "/bin/sh",          // POSIX fallback (Alpine / minimal installs)
+            "/usr/bin/sh",
+        };
+        shell_path = "/bin/sh";  // final fallback
+        for (auto s : shells) {
+            if (access(s, X_OK) == 0) { shell_path = s; break; }
+        }
 #endif
     }
 

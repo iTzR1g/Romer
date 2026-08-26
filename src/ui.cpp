@@ -35,10 +35,19 @@ static bool try_font_path(const char* path) {
 
 static bool load_mono_font(const char* override_path) {
     static const char* mono_paths[] = {
+        // Debian / Ubuntu
         "/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf",
-        "/usr/share/fonts/TTF/DejaVuSansMono.ttf",
         "/usr/share/fonts/truetype/liberation/LiberationMono-Regular.ttf",
+        // Arch / Fedora / openSUSE
+        "/usr/share/fonts/TTF/DejaVuSansMono.ttf",
         "/usr/share/fonts/TTF/LiberationMono-Regular.ttf",
+        // Fedora / Gentoo / Void / Clear Linux
+        "/usr/share/fonts/dejavu/DejaVuSansMono.ttf",
+        // NixOS
+        "/run/current-system/sw/share/X11/fonts/DejaVuSansMono.ttf",
+        // macOS
+        "/Library/Fonts/Courier New.ttf",
+        // Windows
         "C:/Windows/Fonts/consola.ttf",
     };
     if (override_path) {
@@ -116,14 +125,23 @@ static bool search_font_dirs(const std::vector<std::string>& dirs) {
 
 bool ui_load_font(const char* override_path) {
     static const char* paths[] = {
+        // Debian / Ubuntu
         "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
-        "/usr/share/fonts/TTF/DejaVuSans.ttf",
         "/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf",
-        "/usr/share/fonts/TTF/LiberationSans-Regular.ttf",
         "/usr/share/fonts/truetype/noto/NotoSans-Regular.ttf",
+        // Arch / Fedora / openSUSE
+        "/usr/share/fonts/TTF/DejaVuSans.ttf",
+        "/usr/share/fonts/TTF/LiberationSans-Regular.ttf",
         "/usr/share/fonts/TTF/NotoSans-Regular.ttf",
+        // Fedora / Gentoo / Void / Clear Linux
+        "/usr/share/fonts/dejavu/DejaVuSans.ttf",
+        // NixOS
+        "/run/current-system/sw/share/X11/fonts/DejaVuSans.ttf",
+        // macOS
         "/System/Library/Fonts/Helvetica.ttc",
         "/System/Library/Fonts/SFNS.ttf",
+        "/Library/Fonts/Arial.ttf",
+        // Windows
         "C:/Windows/Fonts/arial.ttf",
         "C:/Windows/Fonts/segoeui.ttf",
     };
@@ -144,10 +162,12 @@ bool ui_load_font(const char* override_path) {
     }
 
     std::vector<std::string> font_dirs = {
-        "/usr/share/fonts/truetype",
-        "/usr/share/fonts/TTF",
-        "/usr/share/fonts/otf",
-        "/usr/share/fonts",
+        "/usr/share/fonts/truetype",       // Debian / Ubuntu
+        "/usr/share/fonts/TTF",            // Arch / Fedora
+        "/usr/share/fonts/otf",            // Arch
+        "/usr/share/fonts/dejavu",         // Fedora / Gentoo / Void
+        "/usr/share/fonts",                // fallback for all distros
+        "/run/current-system/sw/share/X11/fonts",  // NixOS
     };
     const char* home = std::getenv("HOME");
     if (home) font_dirs.push_back(std::string(home) + "/.local/share/fonts");
@@ -173,7 +193,7 @@ bool ui_init(SDL_Window*, SDL_Renderer*) {
         return false;
     }
     if (!ui_load_font()) {
-        fprintf(stderr, "[ui] No font found – install SDL2_ttf + a font\n");
+        fprintf(stderr, "[ui] No font found – install a TTF font (e.g. dejavu, liberation, noto)\n");
         fprintf(stderr, "[ui] Tried: /usr/share/fonts/truetype/dejavu/DejaVuSans.ttf\n");
         // We continue without a font – buttons still work (no text)
     }
