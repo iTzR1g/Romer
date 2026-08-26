@@ -304,8 +304,8 @@ static void drawMenu(SDL_Renderer* r, UIState& st, int mx, int my) {
     int by = 100;
 
     // Title
-    int title_w = textWidth("Romer SM", g_font_big);
-    drawText(r, cx - title_w/2, 30, "Romer SM", c_text, g_font_big);
+    int title_w = textWidth("Romer", g_font_big);
+    drawText(r, cx - title_w/2, 30, "Romer", c_text, g_font_big);
 
     // Subtitle
     const char* sub = "Screen mirror · File transfer · Remote shell";

@@ -1,4 +1,4 @@
-# Romer SM
+# Romero Screen Mirroring
 
 **One binary.  Graphical UI.  Zero auth.  LAN only.**
 
@@ -17,7 +17,7 @@ sudo apt install cmake g++ libjpeg-dev libx11-dev libxext-dev \
 
 ```bash
 # Launch the graphical UI
-./build/romer_sm
+./build/romer
 ```
 
 From the UI you can start the server, connect to a remote screen, transfer files, or open a shell.
@@ -25,19 +25,19 @@ From the UI you can start the server, connect to a remote screen, transfer files
 ## CLI reference (power users)
 
 ```
-romer_sm                         → graphical UI
-romer_sm --server [port] [fps] [q] → headless daemon
-romer_sm <host>                  → quick-connect viewer
-romer_sm --shell <host>          → remote shell
-romer_sm --send <file> <host>    → push file
-romer_sm --recv <remote> <local> <host> → pull file
+romer                             → graphical UI
+romer --server [port] [fps] [q]   → headless daemon
+romer <host>                      → quick-connect viewer
+romer --shell <host>              → remote shell
+romer --send <file> <host>        → push file
+romer --recv <remote> <local> <host> → pull file
 ```
 
 ## Services (started from UI or --server)
 
 | Port | Service | How to use |
 |------|---------|-----------|
-| 42817 | Screen mirror | Click "Connect" in UI, or `romer_sm <host>` |
+| 42817 | Screen mirror | Click "Connect" in UI, or `romer <host>` |
 | 42818 | File transfer | Click "Send/Receive File", or `--send` / `--recv` |
 | 42819 | Remote shell | Click "Remote Shell", or `--shell` |
 

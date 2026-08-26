@@ -11,5 +11,5 @@ cmake -S "$PROJECT_DIR" -B "$BUILD_DIR" -DCMAKE_BUILD_TYPE=Release
 echo "==> Building …"
 cmake --build "$BUILD_DIR" --parallel "$(nproc)"
 
-echo "==> Done: ${BUILD_DIR}/romer_sm"
-ls -lh "$BUILD_DIR"/romer_sm
+echo "==> Done: ${BUILD_DIR}/romer"
+ls -lh "$BUILD_DIR"/romer

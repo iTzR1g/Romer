@@ -18,5 +18,5 @@ cmake -S %~dp0.. -B %BUILD_DIR% -DCMAKE_BUILD_TYPE=Release
 echo ==^> Building ...
 cmake --build %BUILD_DIR% --config Release --parallel
 
-echo ==^> Done: %BUILD_DIR%\Release\romer_sm.exe
-dir %BUILD_DIR%\Release\romer_sm.exe 2>nul
+echo ==^> Done: %BUILD_DIR%\Release\romer.exe
+dir %BUILD_DIR%\Release\romer.exe 2>nul

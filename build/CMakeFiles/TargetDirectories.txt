@@ -1,3 +1,0 @@
-/home/rigby/Documents/Programing_projects/romer_sm/build/CMakeFiles/romer_sm.dir
-/home/rigby/Documents/Programing_projects/romer_sm/build/CMakeFiles/edit_cache.dir
-/home/rigby/Documents/Programing_projects/romer_sm/build/CMakeFiles/rebuild_cache.dir

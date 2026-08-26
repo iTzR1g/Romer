@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(romer_sm VERSION 2.0.0 LANGUAGES CXX)
+project(romer VERSION 2.0.0 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -100,7 +100,7 @@ set(CORE_SOURCES
 )
 
 # ─── The one binary ─────────────────────────────────────────
-add_executable(romer_sm ${CORE_SOURCES} ${UI_SOURCE})
-target_include_directories(romer_sm PRIVATE src)
-target_compile_definitions(romer_sm PRIVATE ${UI_DEFS})
-target_link_libraries(romer_sm PRIVATE JPEG::JPEG ${UI_LIBS} ${PLATFORM_LIBS})
+add_executable(romer ${CORE_SOURCES} ${UI_SOURCE})
+target_include_directories(romer PRIVATE src)
+target_compile_definitions(romer PRIVATE ${UI_DEFS})
+target_link_libraries(romer PRIVATE JPEG::JPEG ${UI_LIBS} ${PLATFORM_LIBS})

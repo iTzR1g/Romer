@@ -1,12 +1,12 @@
-// ─── Romer SM ──────────────────────────────────────────────────
+// ─── Romer ───────────────────────────────────────────────────
 //  One binary.  Graphical UI or headless CLI.  Your call.
 //
-//    romer_sm                           graphical UI
-//    romer_sm --server [p] [fps] [q]    headless server
-//    romer_sm <host>                    quick-connect viewer
-//    romer_sm --shell <host>            remote shell
-//    romer_sm --send <f> <host>         push file
-//    romer_sm --recv <r> <l> <host>     pull file
+//    romer                             graphical UI
+//    romer --server [p] [fps] [q]      headless server
+//    romer <host>                      quick-connect viewer
+//    romer --shell <host>              remote shell
+//    romer --send <f> <host>           push file
+//    romer --recv <r> <l> <host>       pull file
 // ──────────────────────────────────────────────────────────────
 
 #include "capture.h"
@@ -122,7 +122,7 @@ int main(int argc, char* argv[]) {
 
 static void printUsage(const char* prog) {
     fprintf(stderr,
-        "Romer SM  —  LAN tools\n"
+        "Romer  —  LAN tools\n"
         "  %s                     graphical UI\n"
         "  %s --server            headless server\n"
         "  %s <host>              quick viewer\n"
@@ -196,7 +196,7 @@ static int viewMode(const char* host, int port) {
 
     auto mk = [&](int fw, int fh) {
         if (t) SDL_DestroyTexture(t); if (r) SDL_DestroyRenderer(r); if (w) SDL_DestroyWindow(w);
-        w = SDL_CreateWindow("Romer SM", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
+        w = SDL_CreateWindow("Romer", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
                               fw, fh, SDL_WINDOW_RESIZABLE);
         r = SDL_CreateRenderer(w, -1, SDL_RENDERER_ACCELERATED);
         t = SDL_CreateTexture(r, SDL_PIXELFORMAT_RGB24, SDL_TEXTUREACCESS_STREAMING, fw, fh);
@@ -227,7 +227,7 @@ static int viewMode(const char* host, int port) {
         SDL_RenderClear(r); SDL_RenderCopy(r, t, nullptr, nullptr); SDL_RenderPresent(r);
         if (++frames%60==0) { auto n=std::chrono::steady_clock::now();
             double fps=60.0/std::chrono::duration<double>(n-last_fps).count();
-            char buf[64]; snprintf(buf,sizeof(buf), "Romer SM  %dx%d  %.1f FPS",fw,fh,fps);
+            char buf[64]; snprintf(buf,sizeof(buf), "Romer  %dx%d  %.1f FPS",fw,fh,fps);
             SDL_SetWindowTitle(w,buf); last_fps=n; frames=0; }
     }
     if (t) SDL_DestroyTexture(t); if (r) SDL_DestroyRenderer(r); if (w) SDL_DestroyWindow(w);
@@ -254,7 +254,7 @@ static int runUI() {
         return 1;
     }
 
-    SDL_Window* win = SDL_CreateWindow("Romer SM",
+    SDL_Window* win = SDL_CreateWindow("Romer",
         SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
         800, 600, SDL_WINDOW_RESIZABLE);
     if (!win) { fprintf(stderr,"[ui] SDL_CreateWindow: %s\n",SDL_GetError()); SDL_Quit(); return 1; }
